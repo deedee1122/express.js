@@ -13,15 +13,20 @@ fetch("http://localhost:3000")
 var form = document.querySelector('form')
 form.addEventListener('submit', function(e){
    e.preventDefault()
+   e.stopPropagation()
+   //console.log(form)
 var formData = new FormData(form)
 fetch("http://localhost:3000/upload/image", {
    method: 'POST',
-   headers: {
-      "Content-Type": "application/json"
-   },
+   // headers: {
+   //    "Content-Type": "application/json"
+   // },
 
-   body:  JSON.stringify([formData.get('url')])
+   body: formData
    
 })
+.then(res => console.log(res))
+.catch(error => console.log(error))
 })
+
 
